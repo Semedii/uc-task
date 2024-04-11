@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:uniqcast_task/Login/login_notifier.dart';
+import 'package:uniqcast_task/provider/Login/login_notifier.dart';
 import 'package:uniqcast_task/repository/auth_repository.dart';
 
 class LoginController {

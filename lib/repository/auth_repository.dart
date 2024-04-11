@@ -18,7 +18,7 @@ class AuthRepository {
               "flutter_test_device_${"firssstName"}_${"lassstName"}" // Make sure to define firstName and lastName variables
         },
       );
-      print("Response code: ${response.statusCode}");
+      print("Response code: ${response.data}");
       return response.data["data"]["access_token"];
     } catch (e) {
       print("Authentication failed: $e");
