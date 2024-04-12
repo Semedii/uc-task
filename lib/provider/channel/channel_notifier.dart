@@ -1,41 +1,30 @@
+import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:uniqcast_task/api/dio_interceptor.dart';
 import 'package:uniqcast_task/model/channel/channel.dart';
+import 'package:uniqcast_task/model/user/user.dart';
 import 'package:uniqcast_task/provider/channel/channel_state.dart';
+import 'package:uniqcast_task/repository/channel_repository.dart';
+import 'package:uniqcast_task/user_data_storage.dart';
 
 part 'channel_notifier.g.dart';
 
 @riverpod
 class ChannelNotifier extends _$ChannelNotifier {
   @override
-  ChannelState build(Channel channel) {
-    return ChannelState(
-      id: channel.id,
-      uid: channel.uid,
-      position: channel.position,
-      type: channel.type,
-      resolution: channel.resolution,
-      isMcast: channel.isMcast,
-      isOtt: channel.isOtt,
-      isDvbt: channel.isDvbt,
-      urlMcast: channel.urlMcast,
-      urlOtt: channel.urlOtt,
-      recordable: channel.recordable,
-      recDuration: channel.recDuration,
-      timeshiftable: channel.timeshiftable,
-      tsRecDuration: channel.tsRecDuration,
-      parentalHidden: channel.parentalHidden,
-      dvbtTag: channel.dvbtTag,
-      streamPriority: channel.streamPriority,
-      backgroundImageId: channel.backgroundImageId,
-      metadata: channel.metadata,
-      highlightsEnabled: channel.highlightsEnabled,
-      ottType: channel.ottType,
-      name: channel.name,
-      shortName: channel.shortName,
-      epgChannel: channel.epgChannel,
-      logos: channel.logos,
-      mosaicAlignmentValues: channel.mosaicAlignmentValues,
-      cmChannel: channel.cmChannel,
-    );
+  ChannelState build() {
+   return ChannelInitialState();
+  }
+
+    Future<void> fetchPackageChannels(List<int> packageIds) async {
+      
+    state = ChannelLoadingState();
+    final Dio dio = DioInterceptor.addInterceptors();
+    ChannelRepository channelRepository = ChannelRepository(dio);
+  
+    User? user = await UserDataStorage.loadUserData();
+    final List<Channel> channels =
+        await channelRepository.fetchChannels(user?.uid, packageIds);
+    state = ChannelLoadedState(channels: channels);
   }
 }

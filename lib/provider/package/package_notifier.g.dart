@@ -6,7 +6,7 @@ part of 'package_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$packageNotifierHash() => r'5803a6e204b238c2ca24fda3f5597cacf8ae7197';
+String _$packageNotifierHash() => r'25ac55926bf0333967d0dd79a2f3baeefe183813';
 
 /// See also [PackageNotifier].
 @ProviderFor(PackageNotifier)

@@ -3,14 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uniqcast_task/model/package/package.dart';
 import 'package:uniqcast_task/provider/package/package_notifier.dart';
 import 'package:uniqcast_task/provider/package/package_state.dart';
+import 'package:uniqcast_task/screens/channel_page.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Fetch user packages regardless of the initial state
-    
 
     return Scaffold(
       appBar: AppBar(
@@ -56,6 +55,7 @@ class HomePage extends ConsumerWidget {
           onTap: isDisabled
               ? null
               : () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> ChannelPage(packages: packages!)));
                   // Handle onTap event only if not disabled
                   print("Clicked on package ${package?.id}");
                 },

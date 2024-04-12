@@ -50,7 +50,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             ElevatedButton(
               onPressed: (){
                 _controller.handleLogin();
-               // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+               Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.brown),
