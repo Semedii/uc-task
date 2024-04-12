@@ -10,7 +10,7 @@ class LoginController {
     var state = ref.watch(loginNotifierProvider);
     try {
       final token =
-          await _authRepository.authenticate(state.username, state.password);
+          await _authRepository.authenticate(ref, state.username, state.password);
       await _authRepository.saveToken(token);
     } catch (e) {
       print("Authentication failed: $e");

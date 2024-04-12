@@ -14,19 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
-}
-
 /// @nodoc
 mixin _$User {
   String get uid => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get deviceId => throw _privateConstructorUsedError;
-  bool get isMulticastNetwork => throw _privateConstructorUsedError;
-  bool get isBlocked => throw _privateConstructorUsedError;
+  int get userId => throw _privateConstructorUsedError;
+  int get deviceId => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
 }
@@ -36,12 +30,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call(
-      {String uid,
-      String name,
-      String deviceId,
-      bool isMulticastNetwork,
-      bool isBlocked});
+  $Res call({String uid, String name, int userId, int deviceId});
 }
 
 /// @nodoc
@@ -59,9 +48,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   $Res call({
     Object? uid = null,
     Object? name = null,
+    Object? userId = null,
     Object? deviceId = null,
-    Object? isMulticastNetwork = null,
-    Object? isBlocked = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -72,18 +60,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       deviceId: null == deviceId
           ? _value.deviceId
           : deviceId // ignore: cast_nullable_to_non_nullable
-              as String,
-      isMulticastNetwork: null == isMulticastNetwork
-          ? _value.isMulticastNetwork
-          : isMulticastNetwork // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isBlocked: null == isBlocked
-          ? _value.isBlocked
-          : isBlocked // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
     ) as $Val);
   }
 }
@@ -95,12 +79,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String uid,
-      String name,
-      String deviceId,
-      bool isMulticastNetwork,
-      bool isBlocked});
+  $Res call({String uid, String name, int userId, int deviceId});
 }
 
 /// @nodoc
@@ -115,9 +94,8 @@ class __$$UserImplCopyWithImpl<$Res>
   $Res call({
     Object? uid = null,
     Object? name = null,
+    Object? userId = null,
     Object? deviceId = null,
-    Object? isMulticastNetwork = null,
-    Object? isBlocked = null,
   }) {
     return _then(_$UserImpl(
       uid: null == uid
@@ -128,49 +106,39 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
       deviceId: null == deviceId
           ? _value.deviceId
           : deviceId // ignore: cast_nullable_to_non_nullable
-              as String,
-      isMulticastNetwork: null == isMulticastNetwork
-          ? _value.isMulticastNetwork
-          : isMulticastNetwork // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isBlocked: null == isBlocked
-          ? _value.isBlocked
-          : isBlocked // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$UserImpl implements _User {
   _$UserImpl(
       {required this.uid,
       required this.name,
-      required this.deviceId,
-      required this.isMulticastNetwork,
-      required this.isBlocked});
-
-  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserImplFromJson(json);
+      required this.userId,
+      required this.deviceId});
 
   @override
   final String uid;
   @override
   final String name;
   @override
-  final String deviceId;
+  final int userId;
   @override
-  final bool isMulticastNetwork;
-  @override
-  final bool isBlocked;
+  final int deviceId;
 
   @override
   String toString() {
-    return 'User(uid: $uid, name: $name, deviceId: $deviceId, isMulticastNetwork: $isMulticastNetwork, isBlocked: $isBlocked)';
+    return 'User(uid: $uid, name: $name, userId: $userId, deviceId: $deviceId)';
   }
 
   @override
@@ -180,53 +148,36 @@ class _$UserImpl implements _User {
             other is _$UserImpl &&
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.deviceId, deviceId) ||
-                other.deviceId == deviceId) &&
-            (identical(other.isMulticastNetwork, isMulticastNetwork) ||
-                other.isMulticastNetwork == isMulticastNetwork) &&
-            (identical(other.isBlocked, isBlocked) ||
-                other.isBlocked == isBlocked));
+                other.deviceId == deviceId));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, uid, name, deviceId, isMulticastNetwork, isBlocked);
+  int get hashCode => Object.hash(runtimeType, uid, name, userId, deviceId);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
       __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _User implements User {
   factory _User(
       {required final String uid,
       required final String name,
-      required final String deviceId,
-      required final bool isMulticastNetwork,
-      required final bool isBlocked}) = _$UserImpl;
-
-  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
+      required final int userId,
+      required final int deviceId}) = _$UserImpl;
 
   @override
   String get uid;
   @override
   String get name;
   @override
-  String get deviceId;
+  int get userId;
   @override
-  bool get isMulticastNetwork;
-  @override
-  bool get isBlocked;
+  int get deviceId;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

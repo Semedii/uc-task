@@ -1,15 +1,22 @@
 class UserState {
   final String uid;
-    final String name;
-    final String deviceId;
-    final bool isMulticastNetwork;
-    final bool isBlocked;
+  final String name;
+  final int deviceId;
+  final int userId;
 
-  const UserState({
-    required this.uid,
-    required this.name,
-    required this.deviceId,
-    required this.isMulticastNetwork,
-    required this.isBlocked,
+  UserState({
+    this.uid = '',
+    this.name = '',
+    this.deviceId = 1,
+    this.userId = 1,
   });
+
+  UserState copyWith({String? uid, String? name, int? deviceId, int? userId}) {
+    return UserState(
+      uid: uid ?? this.uid,
+      name: name ?? this.name,
+      deviceId: deviceId ?? this.deviceId,
+      userId: userId ?? this.userId,
+    );
+  }
 }

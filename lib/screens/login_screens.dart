@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uniqcast_task/provider/Login/login_notifier.dart';
 import 'package:uniqcast_task/controllers/login_controller.dart';
+import 'package:uniqcast_task/provider/user/user_notifier.dart';
+import 'package:uniqcast_task/screens/homepage.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -21,6 +23,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     ref.watch(loginNotifierProvider);
+    final userState = ref.watch(userNotifierProvider);
+
+    // Access the deviceId from the userState
+    final deviceId = userState.deviceId;
+    print("waaaaaa $deviceId");
     return Scaffold(
         body: SafeArea(
       child: Padding(
@@ -41,7 +48,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ref.read(loginNotifierProvider.notifier).onPasswordChanged,
             ),
             ElevatedButton(
-              onPressed: _controller.handleLogin,
+              onPressed: (){
+                _controller.handleLogin();
+               // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+              },
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.brown),
               ),

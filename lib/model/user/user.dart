@@ -1,8 +1,6 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
-part 'user.g.dart';
 
 /// The response of the `GET /api/activity` endpoint.
 ///
@@ -12,13 +10,18 @@ class User with _$User {
   factory User({
     required String uid,
     required String name,
-    required String deviceId,
-    required bool isMulticastNetwork,
-    required bool isBlocked,
+    required int userId,
+    required int deviceId,
   }) = _User;
 
   /// Convert a JSON object into an [User] instance.
   /// This enables type-safe reading of the API response.
-  factory User.fromJson(Map<String, dynamic> json) =>
-      _$UserFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+        uid: json['operator_uid'],
+        name: json['operator_name'],
+        userId: json['user_id'] as int,
+        deviceId: json['device_id'] as int,
+      );
+  }
 }

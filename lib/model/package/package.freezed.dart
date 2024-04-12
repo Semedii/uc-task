@@ -14,16 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Package _$PackageFromJson(Map<String, dynamic> json) {
-  return _Package.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Package {
   int get id => throw _privateConstructorUsedError;
-  DateTime get purchasedDate => throw _privateConstructorUsedError;
+  DateTime? get purchasedDate => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PackageCopyWith<Package> get copyWith => throw _privateConstructorUsedError;
 }
@@ -33,7 +28,7 @@ abstract class $PackageCopyWith<$Res> {
   factory $PackageCopyWith(Package value, $Res Function(Package) then) =
       _$PackageCopyWithImpl<$Res, Package>;
   @useResult
-  $Res call({int id, DateTime purchasedDate});
+  $Res call({int id, DateTime? purchasedDate});
 }
 
 /// @nodoc
@@ -50,17 +45,17 @@ class _$PackageCopyWithImpl<$Res, $Val extends Package>
   @override
   $Res call({
     Object? id = null,
-    Object? purchasedDate = null,
+    Object? purchasedDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      purchasedDate: null == purchasedDate
+      purchasedDate: freezed == purchasedDate
           ? _value.purchasedDate
           : purchasedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -72,7 +67,7 @@ abstract class _$$PackageImplCopyWith<$Res> implements $PackageCopyWith<$Res> {
       __$$PackageImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, DateTime purchasedDate});
+  $Res call({int id, DateTime? purchasedDate});
 }
 
 /// @nodoc
@@ -87,33 +82,30 @@ class __$$PackageImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? purchasedDate = null,
+    Object? purchasedDate = freezed,
   }) {
     return _then(_$PackageImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      purchasedDate: null == purchasedDate
+      purchasedDate: freezed == purchasedDate
           ? _value.purchasedDate
           : purchasedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$PackageImpl implements _Package {
-  _$PackageImpl({required this.id, required this.purchasedDate});
 
-  factory _$PackageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PackageImplFromJson(json);
+class _$PackageImpl implements _Package {
+  _$PackageImpl({required this.id, this.purchasedDate});
 
   @override
   final int id;
   @override
-  final DateTime purchasedDate;
+  final DateTime? purchasedDate;
 
   @override
   String toString() {
@@ -130,7 +122,6 @@ class _$PackageImpl implements _Package {
                 other.purchasedDate == purchasedDate));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, purchasedDate);
 
@@ -139,26 +130,16 @@ class _$PackageImpl implements _Package {
   @pragma('vm:prefer-inline')
   _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>
       __$$PackageImplCopyWithImpl<_$PackageImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PackageImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Package implements Package {
-  factory _Package(
-      {required final int id,
-      required final DateTime purchasedDate}) = _$PackageImpl;
-
-  factory _Package.fromJson(Map<String, dynamic> json) = _$PackageImpl.fromJson;
+  factory _Package({required final int id, final DateTime? purchasedDate}) =
+      _$PackageImpl;
 
   @override
   int get id;
   @override
-  DateTime get purchasedDate;
+  DateTime? get purchasedDate;
   @override
   @JsonKey(ignore: true)
   _$$PackageImplCopyWith<_$PackageImpl> get copyWith =>

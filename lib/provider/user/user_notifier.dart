@@ -7,13 +7,17 @@ part 'user_notifier.g.dart';
 @riverpod
 class UserNotifier extends _$UserNotifier {
   @override
-  UserState build(User user) {
-    return UserState(
+  UserState build() {
+    return UserState();
+  }
+
+  void loadUser(User user) {
+    state = state.copyWith(
       uid: user.uid,
       name: user.name,
       deviceId: user.deviceId,
-      isMulticastNetwork: user.isMulticastNetwork,
-      isBlocked: user.isBlocked,
+      userId: user.userId,
     );
+    print("device waxa weye ${state.deviceId} ${user.deviceId}");
   }
 }
