@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uniqcast_task/model/channel/channel.dart';
@@ -18,20 +15,28 @@ class ChannelPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Channels'),
+        backgroundColor: Colors.black,
+        title: const Text(
+          'Channels',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
-      body: _buildBody(ref),
+      body: Container(
+        color: Colors.black,
+        child: _buildBody(ref),
+      ),
     );
   }
 
   Widget _buildBody(WidgetRef ref) {
     final channelState = ref.watch(channelNotifierProvider);
 
-
     if (channelState is ChannelInitialState) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-    ref.read(channelNotifierProvider.notifier).fetchPackageChannels(getPackageIds(packages));
-  });
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(channelNotifierProvider.notifier).fetchPackageChannels(
+              getPackageIds(packages),
+            );
+      });
       return const Center(child: CircularProgressIndicator());
     }
 
@@ -52,24 +57,37 @@ class ChannelPage extends ConsumerWidget {
       itemBuilder: (context, index) {
         final channel = channels?[index];
 
-        return ListTile(
-          title: Text(
-            "Channel name: ${channel?.name.toString()}",
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+        return Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: Colors.grey.shade200),
             ),
           ),
-          subtitle: Text(channel!.shortName),
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>VidePlayerScreen()));
-                },
+          child: ListTile(
+            contentPadding: const EdgeInsets.all(16.0),
+            leading: Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white),
+              ),
+              child: Icon(Icons.tv, color: Colors.white),
+            ),
+            title: Text(
+              channel?.name ?? '',
+              style: const TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const VidePlayerScreen()));
+            },
+          ),
         );
       },
     );
   }
-  List<int> getPackageIds(List<Package> packages) {
-  return packages.map((package) => package.id).toList();
-}
 
+  List<int> getPackageIds(List<Package> packages) {
+    return packages.map((package) => package.id).toList();
+  }
 }
