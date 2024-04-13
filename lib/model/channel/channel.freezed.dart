@@ -20,6 +20,7 @@ mixin _$Channel {
   String? get urlOtt => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get shortName => throw _privateConstructorUsedError;
+  String? get ouid => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChannelCopyWith<Channel> get copyWith => throw _privateConstructorUsedError;
@@ -30,7 +31,8 @@ abstract class $ChannelCopyWith<$Res> {
   factory $ChannelCopyWith(Channel value, $Res Function(Channel) then) =
       _$ChannelCopyWithImpl<$Res, Channel>;
   @useResult
-  $Res call({int id, String? urlOtt, String name, String shortName});
+  $Res call(
+      {int id, String? urlOtt, String name, String shortName, String? ouid});
 }
 
 /// @nodoc
@@ -50,6 +52,7 @@ class _$ChannelCopyWithImpl<$Res, $Val extends Channel>
     Object? urlOtt = freezed,
     Object? name = null,
     Object? shortName = null,
+    Object? ouid = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -68,6 +71,10 @@ class _$ChannelCopyWithImpl<$Res, $Val extends Channel>
           ? _value.shortName
           : shortName // ignore: cast_nullable_to_non_nullable
               as String,
+      ouid: freezed == ouid
+          ? _value.ouid
+          : ouid // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -79,7 +86,8 @@ abstract class _$$ChannelImplCopyWith<$Res> implements $ChannelCopyWith<$Res> {
       __$$ChannelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? urlOtt, String name, String shortName});
+  $Res call(
+      {int id, String? urlOtt, String name, String shortName, String? ouid});
 }
 
 /// @nodoc
@@ -97,6 +105,7 @@ class __$$ChannelImplCopyWithImpl<$Res>
     Object? urlOtt = freezed,
     Object? name = null,
     Object? shortName = null,
+    Object? ouid = freezed,
   }) {
     return _then(_$ChannelImpl(
       id: null == id
@@ -115,6 +124,10 @@ class __$$ChannelImplCopyWithImpl<$Res>
           ? _value.shortName
           : shortName // ignore: cast_nullable_to_non_nullable
               as String,
+      ouid: freezed == ouid
+          ? _value.ouid
+          : ouid // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -126,7 +139,8 @@ class _$ChannelImpl implements _Channel {
       {required this.id,
       this.urlOtt,
       required this.name,
-      required this.shortName});
+      required this.shortName,
+      this.ouid});
 
   @override
   final int id;
@@ -136,10 +150,12 @@ class _$ChannelImpl implements _Channel {
   final String name;
   @override
   final String shortName;
+  @override
+  final String? ouid;
 
   @override
   String toString() {
-    return 'Channel(id: $id, urlOtt: $urlOtt, name: $name, shortName: $shortName)';
+    return 'Channel(id: $id, urlOtt: $urlOtt, name: $name, shortName: $shortName, ouid: $ouid)';
   }
 
   @override
@@ -151,11 +167,13 @@ class _$ChannelImpl implements _Channel {
             (identical(other.urlOtt, urlOtt) || other.urlOtt == urlOtt) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.shortName, shortName) ||
-                other.shortName == shortName));
+                other.shortName == shortName) &&
+            (identical(other.ouid, ouid) || other.ouid == ouid));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, urlOtt, name, shortName);
+  int get hashCode =>
+      Object.hash(runtimeType, id, urlOtt, name, shortName, ouid);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +187,8 @@ abstract class _Channel implements Channel {
       {required final int id,
       final String? urlOtt,
       required final String name,
-      required final String shortName}) = _$ChannelImpl;
+      required final String shortName,
+      final String? ouid}) = _$ChannelImpl;
 
   @override
   int get id;
@@ -179,6 +198,8 @@ abstract class _Channel implements Channel {
   String get name;
   @override
   String get shortName;
+  @override
+  String? get ouid;
   @override
   @JsonKey(ignore: true)
   _$$ChannelImplCopyWith<_$ChannelImpl> get copyWith =>

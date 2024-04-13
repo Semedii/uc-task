@@ -6,7 +6,7 @@ part of 'channel_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$channelNotifierHash() => r'59fbd79d1756b6853bfc9c7f1a5aa2563c832864';
+String _$channelNotifierHash() => r'8548586b726ac4c41e5e77f4a017adba6f11802c';
 
 /// See also [ChannelNotifier].
 @ProviderFor(ChannelNotifier)

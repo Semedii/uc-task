@@ -21,7 +21,7 @@ class ChannelRepository {
       if (response.statusCode == 200) {
         final List<dynamic> jsonData = response.data['data'];
         final List<Channel> channels = jsonData
-            .map((json) => Channel.fromJson(json as Map<String, dynamic>))
+            .map((json) => Channel.fromJson(ouid, json as Map<String, dynamic>))
             .toList();
         return channels;
       } else {

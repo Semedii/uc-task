@@ -15,6 +15,7 @@ class ChannelPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black,
         title: const Text(
           'Channels',
@@ -58,28 +59,42 @@ class ChannelPage extends ConsumerWidget {
         final channel = channels?[index];
 
         return Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             border: Border(
-              bottom: BorderSide(color: Colors.grey.shade200),
+              bottom: BorderSide(color: Colors.grey),
             ),
           ),
           child: ListTile(
             contentPadding: const EdgeInsets.all(16.0),
             leading: Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white),
+              decoration: const BoxDecoration(
+                border: Border(
+                  right: BorderSide(color: Colors.grey),
+                ),
               ),
-              child: Icon(Icons.tv, color: Colors.white),
+              child: Image.network(
+                "https://office-new-dev.uniqcast.com:12802/api/client/v1/${channel?.ouid}/channels/${channel?.id}/logos/NORMAL?accessKey=WkVjNWNscFhORDBLCg==",
+                loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  } else {
+                    return CircularProgressIndicator(color: Colors.white); 
+                  }
+                },
+                errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                  return Image.asset('assets/logo/logo.png'); 
+                },
+              ),
             ),
             title: Text(
               channel?.name ?? '',
               style: const TextStyle(color: Colors.white),
             ),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const VidePlayerScreen()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const VidePlayerScreen()),
+              );
             },
           ),
         );
