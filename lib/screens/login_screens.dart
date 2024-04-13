@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uniqcast_task/provider/Login/login_notifier.dart';
 import 'package:uniqcast_task/controllers/login_controller.dart';
-import 'package:uniqcast_task/provider/user/user_notifier.dart';
 import 'package:uniqcast_task/screens/homepage.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {

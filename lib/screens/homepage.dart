@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uniqcast_task/components/custom_drawer.dart';
 import 'package:uniqcast_task/model/package/package.dart';
 import 'package:uniqcast_task/provider/package/package_notifier.dart';
 import 'package:uniqcast_task/provider/package/package_state.dart';
@@ -12,6 +13,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: AppBar(
         title: const Text('Packages'),
       ),
@@ -56,8 +58,6 @@ class HomePage extends ConsumerWidget {
               ? null
               : () {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> ChannelPage(packages: packages!)));
-                  // Handle onTap event only if not disabled
-                  print("Clicked on package ${package?.id}");
                 },
         );
       },

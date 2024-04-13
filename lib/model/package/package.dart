@@ -16,7 +16,6 @@ class Package with _$Package {
   /// Convert a JSON object into an [User] instance.
   /// This enables type-safe reading of the API response.
 factory Package.fromJson(Map<String, dynamic> json) {
-  print("aaaaaa $json");
   return Package(
     id: json['id'] as int,
     purchasedDate: json['purchased'] != null ? DateTime.parse(json['purchased']) : null,

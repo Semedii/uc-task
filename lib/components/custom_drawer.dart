@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uniqcast_task/controllers/log_out_controller.dart';
 import 'package:uniqcast_task/repository/auth_repository.dart';
-import 'package:uniqcast_task/screens/homepage.dart';
 import 'package:uniqcast_task/user_data_storage.dart';
 
 class CustomDrawer extends ConsumerWidget {
   final AuthRepository authRepository = AuthRepository();
+
+  CustomDrawer({super.key});
   
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,19 +17,19 @@ class CustomDrawer extends ConsumerWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.blue,
             ),
             child: FutureBuilder<String?>(
               future: UserDataStorage.getUsername(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 } else {
                   final String userName = snapshot.data ?? 'Guest';
                   return Text(
                     'Welcome, $userName',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                     ),
@@ -39,17 +39,7 @@ class CustomDrawer extends ConsumerWidget {
             ),
           ),
           ListTile(
-            title: Text('Packages'),
-            onTap: () {
-              Navigator.pop(context); // Close the drawer
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('Logout'),
+            title: const Text('Logout'),
             onTap: () => logoutController.handleLogout()
           ),
         ],

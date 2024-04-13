@@ -15,7 +15,7 @@ class ChannelPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      drawer: CustomDrawer(),
+      endDrawer: CustomDrawer(),
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black,
@@ -81,7 +81,7 @@ class ChannelPage extends ConsumerWidget {
                   if (loadingProgress == null) {
                     return child;
                   } else {
-                    return CircularProgressIndicator(color: Colors.white); 
+                    return const CircularProgressIndicator(color: Colors.white); 
                   }
                 },
                 errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
