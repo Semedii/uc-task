@@ -27,10 +27,10 @@ class LoginScreen extends ConsumerWidget {
   }
 
   ElevatedButton _getLoginButton(BuildContext context, WidgetRef ref) {
-    LoginController _controller = LoginController(ref);
+    LoginController controller = LoginController(ref);
     return ElevatedButton(
       onPressed: () {
-        _controller.handleLogin();
+        controller.handleLogin();
         Navigator.push(
           context,
           MaterialPageRoute(
