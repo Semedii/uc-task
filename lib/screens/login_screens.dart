@@ -23,11 +23,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     ref.watch(loginNotifierProvider);
-    final userState = ref.watch(userNotifierProvider);
-
-    // Access the deviceId from the userState
-    final deviceId = userState.deviceId;
-    print("waaaaaa $deviceId");
     return Scaffold(
         body: SafeArea(
       child: Padding(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uniqcast_task/components/custom_drawer.dart';
 import 'package:uniqcast_task/model/channel/channel.dart';
 import 'package:uniqcast_task/model/package/package.dart';
 import 'package:uniqcast_task/provider/channel/channel_notifier.dart';
@@ -14,6 +15,7 @@ class ChannelPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: Colors.black,

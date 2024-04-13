@@ -24,6 +24,11 @@ class UserDataStorage {
     }
   }
 
+  static Future<String?> getUsername()async{
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('name');
+  }
+
   static Future<void> clearUserData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
