@@ -24,7 +24,7 @@ class AuthChecker extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tokenFuture = ref.watch(tokenProvider.future);
-
+    
     return FutureBuilder<String?>(
       future: tokenFuture,
       builder: (context, snapshot) {

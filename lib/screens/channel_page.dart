@@ -1,9 +1,13 @@
+import 'dart:convert';
+
+import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uniqcast_task/model/channel/channel.dart';
 import 'package:uniqcast_task/model/package/package.dart';
 import 'package:uniqcast_task/provider/channel/channel_notifier.dart';
 import 'package:uniqcast_task/provider/channel/channel_state.dart';
+import 'package:uniqcast_task/screens/video_player_screen.dart';
 
 class ChannelPage extends ConsumerWidget {
   final List<Package> packages;
@@ -14,7 +18,7 @@ class ChannelPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Channels '),
+        title: const Text('Channels'),
       ),
       body: _buildBody(ref),
     );
@@ -51,14 +55,14 @@ class ChannelPage extends ConsumerWidget {
         return ListTile(
           title: Text(
             "Channel name: ${channel?.name.toString()}",
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
           subtitle: Text(channel!.shortName),
           onTap: () {
-                  print("Clicked on channel ${channel.id}");
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>VidePlayerScreen()));
                 },
         );
       },
