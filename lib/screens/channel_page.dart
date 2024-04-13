@@ -81,7 +81,7 @@ class ChannelPage extends ConsumerWidget {
       contentPadding: const EdgeInsets.all(16.0),
       leading: _getChannelLogo(context, channel),
       title: _getChannelTitle(channel),
-      onTap: () => _onChannelTapped(context),
+      onTap: () => _onChannelTapped(context, channel?.name),
     );
   }
 
@@ -130,8 +130,8 @@ class ChannelPage extends ConsumerWidget {
     return packages.map((package) => package.id).toList();
   }
 
-  void _onChannelTapped(BuildContext context) {
+  void _onChannelTapped(BuildContext context, String? channelName) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const VidePlayerScreen()));
+        MaterialPageRoute(builder: (context) =>  VidePlayerScreen(channelName: channelName)));
   }
 }
