@@ -67,6 +67,7 @@ class ChannelPage extends ConsumerWidget {
           child: ListTile(
             contentPadding: const EdgeInsets.all(16.0),
             leading: Container(
+              width: MediaQuery.of(context).size.width*.3,
               decoration: const BoxDecoration(
                 border: Border(
                   right: BorderSide(color: Colors.grey),
