@@ -4,23 +4,11 @@ import 'package:uniqcast_task/provider/Login/login_notifier.dart';
 import 'package:uniqcast_task/controllers/login_controller.dart';
 import 'package:uniqcast_task/screens/homepage.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
   @override
-  ConsumerState<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends ConsumerState<LoginScreen> {
-  late LoginController _controller;
-  @override
-  void initState() {
-    _controller = LoginController(ref);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(loginNotifierProvider);
     return Scaffold(
         body: SafeArea(
@@ -29,35 +17,53 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _getTextFormField(
-              labelText: "username",
-              iconData: Icons.person,
-              onChanged:
-                  ref.read(loginNotifierProvider.notifier).onUsernameChanged,
-            ),
-            _getTextFormField(
-              labelText: "password",
-              iconData: Icons.password,
-              onChanged:
-                  ref.read(loginNotifierProvider.notifier).onPasswordChanged,
-            ),
-            ElevatedButton(
-              onPressed: (){
-                _controller.handleLogin();
-               Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.brown),
-              ),
-              child: const Text(
-                "Login",
-                style: TextStyle(color: Colors.white),
-              ),
-            )
+            _getUsernameField(ref),
+            _getPasswordField(ref),
+            _getLoginButton(context, ref),
           ],
         ),
       ),
     ));
+  }
+
+  ElevatedButton _getLoginButton(BuildContext context, WidgetRef ref) {
+    LoginController _controller = LoginController(ref);
+    return ElevatedButton(
+      onPressed: () {
+        _controller.handleLogin();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+        );
+      },
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          Colors.brown,
+        ),
+      ),
+      child: const Text(
+        "Login",
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+  }
+
+  Widget _getPasswordField(WidgetRef ref) {
+    return _getTextFormField(
+      labelText: "password",
+      iconData: Icons.password,
+      onChanged: ref.read(loginNotifierProvider.notifier).onPasswordChanged,
+    );
+  }
+
+  Widget _getUsernameField(WidgetRef ref) {
+    return _getTextFormField(
+      labelText: "username",
+      iconData: Icons.person,
+      onChanged: ref.read(loginNotifierProvider.notifier).onUsernameChanged,
+    );
   }
 
   Widget _getTextFormField({
