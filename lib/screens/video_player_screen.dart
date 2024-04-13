@@ -4,8 +4,8 @@ import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 
 class VidePlayerScreen extends StatelessWidget {
-  const VidePlayerScreen({super.key});
-
+  const VidePlayerScreen({this.channelName, super.key});
+  final String? channelName;
    @override
   Widget build(BuildContext context) {
     String base64EncodedString =
@@ -14,7 +14,7 @@ class VidePlayerScreen extends StatelessWidget {
   String decodedString = utf8.decode(base64.decode(base64EncodedString));
     return Scaffold(
       appBar: AppBar(
-        title: Text("Example player"),
+        title: Text("Playing $channelName"),
       ),
       body: Column(
         children: [
@@ -22,10 +22,9 @@ class VidePlayerScreen extends StatelessWidget {
             aspectRatio: 16 / 9,
             child: BetterPlayer.network(
               decodedString,
-              betterPlayerConfiguration: BetterPlayerConfiguration(
+              betterPlayerConfiguration: const BetterPlayerConfiguration(
                 aspectRatio: 1,
                 autoPlay: true,
-               // fullScreenByDefault: true
               ),
             ),
           ),

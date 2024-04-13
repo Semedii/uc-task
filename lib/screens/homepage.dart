@@ -41,7 +41,7 @@ class HomePage extends ConsumerWidget {
       title: _getListItemTitle(package, isDisabled),
       subtitle: _getListItemSubtitle(package, isDisabled),
       trailing: _getListItemTrailing(package, isDisabled),
-      onTap: () => _onListItemTapped(context, packages!, isDisabled),
+      onTap: () => _onListItemTapped(context, packages, isDisabled),
     );
   }
 
@@ -86,20 +86,20 @@ class HomePage extends ConsumerWidget {
     }
   }
 
-  void _onListItemTapped(
-    BuildContext context,
-    List<Package> packages,
-    bool isDisabled,
-  ) {
-    isDisabled
-        ? null
-        : () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ChannelPage(packages: packages),
-              ),
-            );
-          };
-  }
+void _onListItemTapped(
+  BuildContext context,
+  List<Package>? packages,
+  bool isDisabled,
+) {
+  isDisabled
+      ? null
+      : () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChannelPage(packages: packages!),
+            ),
+          );
+        }(); 
+}
 }
