@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uniqcast_task/api/dio_interceptor.dart';
 import 'package:uniqcast_task/model/user/user.dart';
 import 'package:uniqcast_task/user_data_storage.dart';
+import 'package:uniqcast_task/utils/token_util.dart';
 
 part 'auth_repository.g.dart';
 
@@ -25,8 +26,7 @@ class AuthNotifier extends _$AuthNotifier{
   final StreamController<bool> _authenticationStateController = StreamController<bool>.broadcast();
    Stream<bool> get authenticationStateChanges => _authenticationStateController.stream;
     Future<void> _checkAuthenticationState() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
+    final token  = await TokenUtil.getToken();
     _authenticationStateController.add(token != null);
   }
   Future<String> authenticate(

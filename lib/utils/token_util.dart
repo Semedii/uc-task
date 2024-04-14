@@ -1,7 +1,7 @@
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Token {
+class TokenUtil {
   static Future<String?> getToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
