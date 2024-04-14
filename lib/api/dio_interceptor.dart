@@ -10,7 +10,6 @@ class DioInterceptor {
         final String? token = prefs.getString('token');
         if (token != null) {
           options.headers["Authorization"] = "Bearer $token";
-          print("Request made with token: $token"); // Print message when token is added to request headers
         }
         return handler.next(options);
       },
