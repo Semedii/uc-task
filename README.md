@@ -7,3 +7,8 @@
 3. Open project.  
 3. Run `flutter clean && flutter pub get`  
 4. Connect mobile phone and run application 
+
+
+
+https://github.com/Semedii/uc-task/assets/94680835/b598d20b-d945-4d00-8e11-005799182731
+
