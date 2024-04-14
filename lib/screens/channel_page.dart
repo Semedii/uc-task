@@ -115,7 +115,7 @@ class ChannelPage extends ConsumerWidget {
       },
       errorBuilder:
           (BuildContext context, Object error, StackTrace? stackTrace) {
-        return Image.asset('assets/logo/logo.png');
+        return Image.asset('assets/images/logo.png');
       },
     );
   }
