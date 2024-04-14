@@ -16,9 +16,11 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     AuthCheckerRoute.name: (routeData) {
+      final args = routeData.argsAs<AuthCheckerRouteArgs>(
+          orElse: () => const AuthCheckerRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AuthCheckerPage(),
+        child: AuthCheckerPage(key: args.key),
       );
     },
     ChannelRoute.name: (routeData) {
@@ -59,16 +61,31 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [AuthCheckerPage]
-class AuthCheckerRoute extends PageRouteInfo<void> {
-  const AuthCheckerRoute({List<PageRouteInfo>? children})
-      : super(
+class AuthCheckerRoute extends PageRouteInfo<AuthCheckerRouteArgs> {
+  AuthCheckerRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           AuthCheckerRoute.name,
+          args: AuthCheckerRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'AuthCheckerRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<AuthCheckerRouteArgs> page =
+      PageInfo<AuthCheckerRouteArgs>(name);
+}
+
+class AuthCheckerRouteArgs {
+  const AuthCheckerRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AuthCheckerRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for

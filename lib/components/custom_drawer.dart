@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uniqcast_task/controllers/log_out_controller.dart';
-import 'package:uniqcast_task/repository/auth_repository.dart';
 import 'package:uniqcast_task/user_data_storage.dart';
 
 class CustomDrawer extends ConsumerWidget {
-  final AuthRepository authRepository = AuthRepository();
+  const CustomDrawer({super.key});
 
-  CustomDrawer({super.key});
-  
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final LogoutController logoutController = LogoutController(authRepository);
+    final LogoutController logoutController = LogoutController(ref);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -39,9 +36,8 @@ class CustomDrawer extends ConsumerWidget {
             ),
           ),
           ListTile(
-            title: const Text('Logout'),
-            onTap: () => logoutController.handleLogout()
-          ),
+              title: const Text('Logout'),
+              onTap: () => logoutController.handleLogout()),
         ],
       ),
     );

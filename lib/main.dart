@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uniqcast_task/repository/auth_repository.dart';
 import 'package:uniqcast_task/router/app_router.dart';
 import 'package:uniqcast_task/screens/homepage.dart';
 import 'package:uniqcast_task/screens/login_screens.dart';
-import 'package:uniqcast_task/utils/token.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,30 +30,24 @@ class MyApp extends StatelessWidget {
 
 @RoutePage()
 class AuthCheckerPage extends ConsumerWidget {
-  const AuthCheckerPage({super.key});
+  AuthCheckerPage({super.key});
+  final StreamController<bool> streamController = StreamController<bool>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tokenFuture = ref.watch(tokenProvider.future);
+    final authRepository = ref.watch(authNotifierProvider);
 
-    return FutureBuilder<String?>(
-      future: tokenFuture,
+    return StreamBuilder<bool>(
+      stream: authRepository.authenticationStateChanges,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          final String? token = snapshot.data;
-          if (token != null) {
-            return const HomePage();
-          } else {
-            return const LoginScreen();
-          }
-        } else {
-          return const CircularProgressIndicator();
+        print("aaaa ${snapshot.data}");
+        if (snapshot.hasData && snapshot.data == true) {
+          return const HomePage();
+        } else if (snapshot.hasData && snapshot.data == false) {
+          return const LoginScreen();
         }
+        return const Scaffold(body: Center(child: CircularProgressIndicator()));
       },
     );
   }
 }
-
-final tokenProvider = FutureProvider<String?>((ref) async {
-  return await Token.getToken();
-});

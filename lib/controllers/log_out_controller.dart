@@ -1,12 +1,13 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uniqcast_task/repository/auth_repository.dart';
 
-class LogoutController{
-final AuthRepository _authRepository;
-
-  LogoutController(this._authRepository);
+class LogoutController {
+  WidgetRef ref;
+  LogoutController(this.ref);
   void handleLogout() async {
+    final authRepository = ref.watch(authNotifierProvider);
     try {
-      await _authRepository.logout();
+      await authRepository.logout();
     } catch (e) {
       print("Logout failed: $e");
     }
