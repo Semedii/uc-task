@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uniqcast_task/components/custom_drawer.dart';
@@ -5,8 +6,9 @@ import 'package:uniqcast_task/model/channel/channel.dart';
 import 'package:uniqcast_task/model/package/package.dart';
 import 'package:uniqcast_task/provider/channel/channel_notifier.dart';
 import 'package:uniqcast_task/provider/channel/channel_state.dart';
-import 'package:uniqcast_task/screens/video_player_screen.dart';
+import 'package:uniqcast_task/router/app_router.dart';
 
+@RoutePage()
 class ChannelPage extends ConsumerWidget {
   final List<Package> packages;
 
@@ -131,7 +133,6 @@ class ChannelPage extends ConsumerWidget {
   }
 
   void _onChannelTapped(BuildContext context, String? channelName) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) =>  VidePlayerScreen(channelName: channelName)));
+    AutoRouter.of(context).push(VidePlayerRoute(channelName: channelName));
   }
 }

@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uniqcast_task/provider/Login/login_notifier.dart';
 import 'package:uniqcast_task/controllers/login_controller.dart';
-import 'package:uniqcast_task/screens/homepage.dart';
+import 'package:uniqcast_task/router/app_router.dart';
 
+@RoutePage()
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
 
@@ -31,12 +33,7 @@ class LoginScreen extends ConsumerWidget {
     return ElevatedButton(
       onPressed: () {
         controller.handleLogin();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HomePage(),
-          ),
-        );
+        AutoRouter.of(context).push(const HomeRoute());
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(

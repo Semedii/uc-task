@@ -1,28 +1,34 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uniqcast_task/router/app_router.dart';
 import 'package:uniqcast_task/screens/homepage.dart';
 import 'package:uniqcast_task/screens/login_screens.dart';
 import 'package:uniqcast_task/utils/token.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return const ProviderScope(
-      child: MaterialApp(
-        home: AuthChecker(),
+    return ProviderScope(
+      child: MaterialApp.router(
+        routerConfig: _appRouter.config(),
+        // home: AuthChecker(),
       ),
     );
   }
 }
 
-class AuthChecker extends ConsumerWidget {
-  const AuthChecker({super.key});
+@RoutePage()
+class AuthCheckerPage extends ConsumerWidget {
+  const AuthCheckerPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
