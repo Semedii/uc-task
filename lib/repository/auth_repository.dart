@@ -50,6 +50,7 @@ class AuthNotifier extends _$AuthNotifier{
      await _checkAuthenticationState();
       return response.data["data"]["access_token"];
     } catch (e) {
+       _authenticationStateController.addError(e.toString());
       throw Exception('Authentication failed: $e');
     }
   }

@@ -40,7 +40,16 @@ class AuthCheckerPage extends ConsumerWidget {
     return StreamBuilder<bool>(
       stream: authRepository.authenticationStateChanges,
       builder: (context, snapshot) {
-        print("aaaa ${snapshot.data}");
+        if (snapshot.hasError) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Authentication error: please try again'),
+              ),
+            );
+          });
+          return const LoginScreen();
+        }
         if (snapshot.hasData && snapshot.data == true) {
           return const HomePage();
         } else if (snapshot.hasData && snapshot.data == false) {

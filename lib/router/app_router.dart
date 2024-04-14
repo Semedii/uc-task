@@ -16,8 +16,9 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: AuthCheckerRoute.page, initial: true, children: <AutoRoute>[
           AutoRoute(page: LoginRoute.page),
           AutoRoute(page: HomeRoute.page),
-          AutoRoute(page: ChannelRoute.page),
+          
+        ]),
+        AutoRoute(page: ChannelRoute.page),
           AutoRoute(page: VidePlayerRoute.page),
-        ])
       ];
 }
